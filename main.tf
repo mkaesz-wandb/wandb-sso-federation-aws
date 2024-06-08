@@ -1,3 +1,14 @@
+provider "aws" {
+  region = var.aws_region
+  profile = var.aws_profile
+
+  default_tags {
+    tags = {
+      Owner = "Marc-Steffen Kaesz"
+    }
+  }
+}
+
 data "aws_eks_cluster" "app_cluster" {
   name = module.wandb_infra.cluster_id
 }
@@ -32,9 +43,9 @@ provider "helm" {
 
 locals{
   oidc_envs = {
-    "OIDC_ISSUER"      = "https://${aws_cognito_user_pool.wandb.endpoint}/"
-    "OIDC_CLIENT_ID"   = aws_cognito_user_pool_client.userpool_client.id
-    "OIDC_AUTH_METHOD" = "pkce"
+    "OIDC_ISSUER"                   = "https://${aws_cognito_user_pool.wandb.endpoint}/"
+    "OIDC_CLIENT_ID"                = aws_cognito_user_pool_client.userpool_client.id
+    "OIDC_AUTH_METHOD"              = "pkce"
     "OIDC_SECRET"                   = aws_cognito_user_pool_client.userpool_client.client_secret
     "GORILLA_USE_IDENTIFIER_CLAIMS" = true
   }

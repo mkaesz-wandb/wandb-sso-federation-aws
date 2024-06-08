@@ -1,3 +1,13 @@
+terraform {
+  required_providers {
+    auth0 = {
+      source  = "auth0/auth0"
+      version = ">= 1.0.0" # Refer to docs for latest version
+    }
+  }
+}
+
+provider "auth0" {}
 
 locals {
   domain = module.wandb_infra.url
@@ -6,8 +16,8 @@ locals {
 data "aws_region" "current" {}
 
 resource "auth0_client" "wandb" {
-  name                    = "mkaesz - Bayer Test"
-  description             = "Customer Bayer has SSO integration issues. This app is used to find a solution."
+  name                    = "mkaesz - SSO Test"
+  description             = "SSO testing..."
   app_type                = "spa"
   oidc_conformant         = true
   callbacks               = ["https://${aws_cognito_user_pool_domain.wandb.id}.auth.${data.aws_region.current.name}.amazoncognito.com/oauth2/idpresponse"]
