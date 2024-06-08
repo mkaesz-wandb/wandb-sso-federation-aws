@@ -89,14 +89,6 @@ module "wandb_infra" {
   bucket_name        = var.bucket_name
   bucket_kms_key_arn = var.bucket_kms_key_arn
   use_internal_queue = true
-  size               = var.size
-
-  system_reserved_cpu_millicores      = var.system_reserved_cpu_millicores
-  system_reserved_memory_megabytes    = var.system_reserved_memory_megabytes
-  system_reserved_ephemeral_megabytes = var.system_reserved_ephemeral_megabytes
-  system_reserved_pid                 = var.system_reserved_pid
-
-  aws_loadbalancer_controller_tags = var.aws_loadbalancer_controller_tags
 
   other_wandb_env = local.env_vars
 }

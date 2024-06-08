@@ -65,12 +65,6 @@ variable "database_sort_buffer_size" {
   default     = 262144
 }
 
-variable "wandb_version" {
-  description = "The version of Weights & Biases local to deploy."
-  type        = string
-  default     = "latest"
-}
-
 variable "wandb_image" {
   description = "Docker repository of to pull the wandb image from."
   type        = string
@@ -105,36 +99,6 @@ variable "allowed_inbound_ipv6_cidr" {
 variable "other_wandb_env" {
   type        = map(string)
   description = "Extra environment variables for W&B"
-  default     = {}
-}
-
-variable "system_reserved_cpu_millicores" {
-  description = "(Optional) The amount of 'system-reserved' CPU millicores to pass to the kubelet. For example: 100.  A value of -1 disables the flag."
-  type        = number
-  default     = -1
-}
-
-variable "system_reserved_memory_megabytes" {
-  description = "(Optional) The amount of 'system-reserved' memory in megabytes to pass to the kubelet. For example: 100.  A value of -1 disables the flag."
-  type        = number
-  default     = -1
-}
-
-variable "system_reserved_ephemeral_megabytes" {
-  description = "(Optional) The amount of 'system-reserved' ephemeral storage in megabytes to pass to the kubelet. For example: 1000.  A value of -1 disables the flag."
-  type        = number
-  default     = -1
-}
-
-variable "system_reserved_pid" {
-  description = "(Optional) The amount of 'system-reserved' process ids [pid] to pass to the kubelet. For example: 1000.  A value of -1 disables the flag."
-  type        = number
-  default     = -1
-}
-
-variable "aws_loadbalancer_controller_tags" {
-  description = "(Optional) A map of AWS tags to apply to all resources managed by the load balancer controller"
-  type        = map(string)
   default     = {}
 }
 
